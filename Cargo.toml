@@ -6,7 +6,6 @@ authors = ["Matt Chun-Lum <matt@questionable.engineering>"]
 description = "Attempt at a generic version of the api wrapper from the gitlab crate."
 rust-version = "1.65.0"
 license = "MIT"
-publish = ["ancalagon"]
 
 [dependencies]
 async-trait = "0.1.53"
