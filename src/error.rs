@@ -18,6 +18,12 @@ pub enum BodyError {
         #[from]
         source: serde_urlencoded::ser::Error,
     },
+
+    #[error("failed to create JSON body: {}", source)]
+    Json {
+        #[from]
+        source: serde_json::Error,
+    },
 }
 
 /// Errors which may occur when using API endpoints.
