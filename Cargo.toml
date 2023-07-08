@@ -1,14 +1,12 @@
 [package]
 name = "gen-api-wrapper"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 authors = ["Matt Chun-Lum <matt@questionable.engineering>"]
 description = "Attempt at a generic version of the api wrapper from the gitlab crate."
 rust-version = "1.65.0"
 license = "MIT"
 publish = ["ancalagon"]
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 async-trait = "0.1.53"
