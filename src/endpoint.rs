@@ -10,7 +10,6 @@
 
 use std::borrow::Cow;
 
-use async_trait::async_trait;
 use http::{self, header, Method, Request};
 use serde::de::DeserializeOwned;
 
@@ -29,7 +28,7 @@ pub trait Endpoint {
     fn endpoint(&self) -> Cow<'static, str>;
 
     /// Query parameters for the endpoint.
-    fn parameters(&self) -> QueryParams {
+    fn parameters(&self) -> QueryParams<'_> {
         QueryParams::default()
     }
 
@@ -75,7 +74,6 @@ where
     }
 }
 
-#[async_trait]
 impl<E, T, C> AsyncQuery<T, C> for E
 where
     E: Endpoint + Sync,

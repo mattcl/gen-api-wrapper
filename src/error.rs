@@ -17,14 +17,6 @@ use thiserror::Error;
 #[derive(Debug, Error)]
 #[non_exhaustive]
 pub enum BodyError {
-    /// Body data could not be serialized from form parameters.
-    #[error("failed to URL encode form parameters: {}", source)]
-    UrlEncoded {
-        /// The source of the error.
-        #[from]
-        source: serde_urlencoded::ser::Error,
-    },
-
     #[error("failed to create JSON body: {}", source)]
     Json {
         #[from]

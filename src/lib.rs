@@ -1,5 +1,4 @@
 #![doc = include_str!("../README.md")]
-use async_trait::async_trait;
 use http::{header, Request};
 
 use crate::{
@@ -57,7 +56,6 @@ where
     }
 }
 
-#[async_trait]
 impl<E, C> AsyncQuery<Vec<u8>, C> for Raw<E>
 where
     E: Endpoint + Sync,

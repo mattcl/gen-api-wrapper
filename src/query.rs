@@ -9,7 +9,8 @@
 // Modified in an attempt to make it general beyond just gitlab
 //
 
-use async_trait::async_trait;
+use std::future::Future;
+
 use http::Uri;
 use url::Url;
 
@@ -34,11 +35,12 @@ where
 }
 
 /// A trait which represents an asynchronous query which may be made to a client.
-#[async_trait]
 pub trait AsyncQuery<T, C>
 where
     C: AsyncClient,
 {
     /// Perform the query asynchronously against the client.
-    async fn query_async(&self, client: &C) -> Result<T, ApiError<C::Error>>;
+    /// Perform the query asynchronously against the client.
+    fn query_async(&self, client: &C)
+        -> impl Future<Output = Result<T, ApiError<C::Error>>> + Send;
 }

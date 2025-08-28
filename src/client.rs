@@ -9,8 +9,8 @@
 // Modified in an attempt to make it general beyond just gitlab
 
 use std::error::Error;
+use std::future::Future;
 
-use async_trait::async_trait;
 use bytes::Bytes;
 use http::request::Builder as RequestBuilder;
 use http::Response;
@@ -40,12 +40,11 @@ pub trait Client: RestClient {
 }
 
 /// A trait representing an asynchronous client which can communicate with a generic instance.
-#[async_trait]
 pub trait AsyncClient: RestClient {
     /// Send a REST query asynchronously.
-    async fn rest_async(
+    fn rest_async(
         &self,
         request: RequestBuilder,
         body: Vec<u8>,
-    ) -> Result<Response<Bytes>, ApiError<Self::Error>>;
+    ) -> impl Future<Output = Result<Response<Bytes>, ApiError<Self::Error>>> + Send;
 }

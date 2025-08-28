@@ -15,8 +15,6 @@ use std::borrow::Cow;
 
 use url::Url;
 
-use crate::error::BodyError;
-
 /// A trait representing a parameter value.
 pub trait ParamValue<'a> {
     #[allow(clippy::wrong_self_convention)]
@@ -118,15 +116,6 @@ impl<'a> FormParams<'a> {
         self.params
             .extend(iter.map(|(key, value)| (key.into(), value.as_value())));
         self
-    }
-
-    /// Encode the parameters into a request body.
-    pub fn into_body(self) -> Result<Option<(&'static str, Vec<u8>)>, BodyError> {
-        let body = serde_urlencoded::to_string(self.params)?;
-        Ok(Some((
-            "application/x-www-form-urlencoded",
-            body.into_bytes(),
-        )))
     }
 }
 
