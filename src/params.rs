@@ -75,7 +75,7 @@ impl ParamValue<'static> for f64 {
 }
 
 /// A structure for form parameters.
-#[derive(Debug, Default, Clone)]
+#[derive(Debug, Default, PartialEq, Eq, Clone)]
 pub struct FormParams<'a> {
     params: Vec<(Cow<'a, str>, Cow<'a, str>)>,
 }
@@ -120,7 +120,7 @@ impl<'a> FormParams<'a> {
 }
 
 /// A structure for query parameters.
-#[derive(Debug, Default, Clone)]
+#[derive(Debug, Default, PartialEq, Eq, Clone)]
 pub struct QueryParams<'a> {
     params: Vec<(Cow<'a, str>, Cow<'a, str>)>,
 }
